@@ -1,0 +1,48 @@
+{
+  "appPageId" : "ba63bb01-979a-4412-aac6-852a5e8114ae",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "09d7063b-7a6e-459c-89db-bf55ea9f1c9d",
+  "label" : "Guest-Home",
+  "regions" : [ {
+    "id" : "fb53bcd9-4ce0-4ea5-9230-956aaa6054a9",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<h2><strong style=\"background-color: rgb(0, 41, 102); color: rgb(0, 71, 178); font-family: arial;\"><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.ABC_Fashion_Logo_Small.1}\"></strong><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 71, 178); font-family: arial;\">&nbsp;&nbsp;</strong><strong style=\"color: rgb(0, 41, 102); font-size: 20px;\">To access your loyalty profile, please use the secure link provided in your email.</strong></h2>"
+      },
+      "componentName" : "forceCommunity:richTextInline",
+      "id" : "79cc23ee-fa0a-41d0-bb80-354a527023d0",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "31002f69-bafd-4272-85af-7f03a4d282f8",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "89c9eec5-ab28-4c64-b5d9-c8c7d0b0c58d",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "ec214d1a-0b01-4f11-bd44-9b10455366d1",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "e1e8cf55-3c42-41f0-96c1-8774dd4e63ad",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "home"
+}

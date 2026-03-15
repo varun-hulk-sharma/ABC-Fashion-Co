@@ -1,0 +1,112 @@
+<template>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+        </lightning-spinner>
+    </div>
+    <div if:false={isLoading}>
+        <div class="page-shell">
+            <div class="card">
+                <div class="brand-header">
+                    <h1>ABC Fashion Co.</h1>
+                    <p>Customer Loyalty Profile</p>
+                </div>
+    
+                <template if:true={isValidToken}>
+                    <div class="form-panel">
+                        <h2 class="section-title">Update Your Profile</h2>
+                        <p class="section-intro">
+                            Hi <b>{acctObj.Name}.</b> Please review and update your loyalty profile information below.
+                        </p>
+                
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <lightning-input
+                                    data-id="phone"
+                                    type="tel"
+                                    name="phone"
+                                    label="Phone"
+                                    value={phone}
+                                    onchange={handleInputChange}>
+                                </lightning-input>
+                            </div>
+                
+                            <div class="form-field">
+                                <lightning-input
+                                    type="date"
+                                    name="personBirthdate"
+                                    label="Birthdate"
+                                    value={personBirthdate}
+                                    required
+                                    onchange={handleInputChange}>
+                                </lightning-input>
+                            </div>
+                
+                            <div class="form-field">
+                                <lightning-combobox
+                                    name="shoeSize"
+                                    label="Shoe Size"
+                                    value={shoeSize}
+                                    options={shoeSizeOptions}
+                                    placeholder="Select Shoe Size"
+                                    required
+                                    onchange={handleInputChange}>
+                                </lightning-combobox>
+                            </div>
+                
+                            <div class="form-field">
+                                <lightning-combobox
+                                    name="tShirtSize"
+                                    label="T-Shirt Size"
+                                    value={tShirtSize}
+                                    options={tShirtSizeOptions}
+                                    placeholder="Select T-Shirt Size"
+                                    required
+                                    onchange={handleInputChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                
+                        <div class="button-row">
+                            <lightning-button
+                                variant="brand"
+                                label="Save Profile"
+                                onclick={handleSave}
+                                disabled={missingRequiredFields}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </template>
+    
+                <template if:false={isValidToken}>
+                    <div class="message-panel">
+                        <div class="icon-wrap">
+                            <lightning-icon
+                                icon-name="utility:error"
+                                alternative-text="Profile not found"
+                                size="small">
+                            </lightning-icon>
+                        </div>
+    
+                        <h2>We couldn’t find your profile</h2>
+    
+                        <p class="message-text">
+                            We were unable to locate a customer loyalty profile using the link you accessed.
+                        </p>
+    
+                        <p class="message-text">
+                            This may be because the link is invalid, expired, or no matching customer record could be found.
+                        </p>
+    
+                        <div class="support-box">
+                            <p class="support-title">Need help?</p>
+                            <p class="support-text">
+                                Please contact ABC Fashion Co. Customer Support at <u><strong>1-888-555-0188</strong></u> for assistance.
+                            </p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+</template>

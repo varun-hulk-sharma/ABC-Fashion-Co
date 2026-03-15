@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "42e47a77-e260-48e1-8548-08e244019b86",
+  "appPageId" : "ba63bb01-979a-4412-aac6-852a5e8114ae",
+  "configurationTags" : [ ],
+  "devName" : "RetailCustomer__c",
+  "id" : "1697ac18-4001-47dc-9bac-6e75a1eeb574",
+  "label" : "RetailCustomer",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-retailcustomer",
+  "type" : "route",
+  "urlPrefix" : "retailcustomer"
+}

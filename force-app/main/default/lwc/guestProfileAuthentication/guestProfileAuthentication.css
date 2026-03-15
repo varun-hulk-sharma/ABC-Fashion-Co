@@ -1,0 +1,128 @@
+.page-shell {
+    min-height: 100vh;
+    background: #f4f6fb;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 100%;
+    max-width: 760px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(1, 16, 92, 0.12);
+    overflow: visible;
+    border: 1px solid #d9dfef;
+}
+
+.brand-header {
+    background: #01105C;
+    color: #ffffff;
+    padding: 1.5rem 2rem;
+}
+
+.brand-header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.brand-header p {
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.message-panel {
+    padding: 2rem;
+    text-align: center;
+}
+
+.icon-wrap {
+    margin-bottom: 1rem;
+}
+
+.message-panel h2 {
+    margin: 0 0 1rem;
+    color: #01105C;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.message-text {
+    margin: 0 0 1rem;
+    color: #2f3a4d;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.support-box {
+    margin: 1.75rem auto 0;
+    padding: 1.25rem 1.5rem;
+    max-width: 550px;
+    background: #f4f6fb;
+    border-left: 4px solid #01105C;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.support-title {
+    margin: 0 0 0.5rem;
+    color: #01105C;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.support-text {
+    margin: 0;
+    color: #2f3a4d;
+    line-height: 1.6;
+}
+
+.support-text a {
+    color: #01105C;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.support-text a:hover {
+    text-decoration: underline;
+}
+
+.form-panel {
+    padding: 2rem;
+}
+
+.section-title {
+    margin: 0 0 0.5rem;
+    color: #01105C;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.section-intro {
+    margin: 0 0 1.5rem;
+    color: #2f3a4d;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+}
+
+.form-field {
+    min-width: 0;
+}
+
+.button-row {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}

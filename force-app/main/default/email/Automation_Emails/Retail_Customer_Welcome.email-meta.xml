@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>ABC_Fashion_Co</letterhead>
+    <name>Retail Customer Welcome</name>
+    <style>freeForm</style>
+    <subject>Welcome to ABC Fashion Co {!Account.FirstName} {!Account.LastName}!</subject>
+    <textOnly>Hello {!Account.FirstName},
+
+Thank you for registering for the ABC Fashion Co. Loyalty Program. We’re excited to welcome you.
+
+As a member, you’ll be able to enjoy exclusive offers, updates, and a more personalized shopping experience with ABC Fashion Co.
+
+To complete or update your profile, please click the link below:
+{!Account.Profile_URL__c}
+
+Thank you again for joining ABC Fashion Co.
+
+Sincerely,
+
+ABC Fashion Co.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
