@@ -3,6 +3,6 @@
     <fullName>Validate_Phone_Number</fullName>
     <active>true</active>
     <description>Ensure the phone number is a valid 10-digit US/Canadian.</description>
-    <errorConditionFormula>NOT(REGEX(Phone, &quot;^[0-9]{10}$&quot;))</errorConditionFormula>
+    <errorConditionFormula>AND(NOT(REGEX(Phone, &quot;^[0-9]{10}$&quot;)), NOT( ISBLANK(Phone) ))</errorConditionFormula>
     <errorMessage>Enter a valid 10-digit US/Canadian phone number.</errorMessage>
 </ValidationRule>

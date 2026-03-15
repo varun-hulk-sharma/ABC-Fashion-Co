@@ -9,6 +9,8 @@
         <members>RetailCustomerService</members>
         <members>GuestProfileAuthenticationController</members>
         <members>RetailCustomerProfileSync</members>
+        <members>GuestProfileAuthenticationControllerTest</members>
+        <members>AccountTriggerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
