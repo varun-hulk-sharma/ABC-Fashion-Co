@@ -211,11 +211,17 @@ It also includes supporting Experience Cloud / site metadata required for the pu
 ## Notes
 
 -Because the live endpoint was unavailable, Beeceptor mock endpoints were configured to simulate both success and error responses for end-to-end manual validation. Endpoint /CreateProfile for 200 and /CreateProfileError for 400.
+
 -A separate Sales Associate profile was not created, as the assignment did not require a dedicated least-privilege internal user model. Internal testing was performed using a System Administrator user.
+
 -A placeholder Org-Wide Email Address was configured for solution testing and email delivery within the development environment.
+
 -The public customer profile page does not rely on a plaintext Salesforce record Id as the only identifier. Access is controlled through a generated profile access token stored on the customer record and validated in Apex.
+
 -Profile access tokens are generated using a cryptographically strong random value. Because the collision probability is negligibly small even at very large scale, no additional duplicate pre-check logic was added. The token field was also configured as Unique to enforce uniqueness at the database level.
+
 -The external loyalty integration endpoint was designed to be configurable through Named Credentials / External Credentials, in line with the assignment requirement. Other supporting email-related configuration was kept straightforward for the scope of the exercise.
+
 -The customer profile update in Salesforce was treated as the primary transaction, with the external loyalty sync handled asynchronously afterward. This assumes the Salesforce profile update should still be committed even if the downstream sync fails. Because the assignment did not state that a failed external callout should block or roll back the profile update, the integration was designed asynchronously. If the requirement had instead been for strict transactional dependency between the Salesforce save and the external sync, the implementation approach would have been different.
 
 
