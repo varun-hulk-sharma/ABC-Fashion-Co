@@ -80,7 +80,11 @@ On success, the external customer_id is stored on the Person Account as Loyalty 
 
 Solution Details
 *****************
-Step 1 - To meet the requirement that the sales associate should only be presented with the four basic fields during creation, I implemented a custom Screen Flow launched from a custom New Retail Customer button.
+Step 1 - Org Setup
+An Enterprise Edition org was used for the implementation so that additional users can be created and the solution can be logged into and reviewed later as required by the assignment.
+
+Step 2 – Sales Associate Creates a Person Account with Only Four Fields
+To meet the requirement that the sales associate should only be presented with the four basic fields during creation, I implemented a custom Screen Flow launched from a custom New Retail Customer button.
 
 The standard New experience was replaced with a custom entry point for retail customer creation. The Flow only requests only the 4 required fields and assigns the Retail_Customer Person Account record type before record creation. A success screen is displayed after creation and supports quick entry of additional customers
 
@@ -88,7 +92,7 @@ As a result, the sales associate is not asked to enter unrelated profile fields 
 
 This solution uses Person Accounts rather than a separate Account/Contact workaround. The package includes the PersonAccount.Retail_Customer record type and the PersonAccount-Retail Customer Layout, which supports the requirement that internal users can later view additional customer profile data on the record page.
 
-Step 2 – Customer Email and Public Profile Link
+Step 3 – Customer Receives a Unique Link and Completes Their Profile
 
 Once a new retail customer is created, an automated email is sent to the customer containing a unique link to a public profile page.
 
@@ -130,12 +134,6 @@ If the token is invalid, the profile is not loaded and access is denied. If the 
 -Set t-shirt size
 -Set shoe size
 
-On successful save:
--The customer record is re-identified using the profile token
--The Person Account is updated
--Profile Completed is set to TRUE
--A queueable integration process is launched to sync the profile externally
-
 Validation and Field Rules
 
 The solution supports the assignment’s required field and data validation rules.
@@ -147,8 +145,14 @@ Required Fields on Profile Completion. The customer must provide:
 -T-Shirt Size
 -Shoe Size
 
+On successful save:
+-The customer record is re-identified using the profile token
+-The Person Account is updated
+-Profile Completed is set to TRUE
+-A queueable integration process is launched to sync the profile externally
 
-Step 3 – Loyalty Program Integration
+
+Step 4 – Profile Completion, Integration, and Response Handling
 
 Once the customer completes their profile, Salesforce sends a POST request to an external loyalty service. This is orchestrated by RetailCustomerProfileSync (Apex class). 
 
@@ -212,6 +216,7 @@ It also includes supporting Experience Cloud / site metadata required for the pu
 
 Notes
 ******
+
 -Because the live endpoint was unavailable, Beeceptor mock endpoints were configured to simulate both success and error responses for end-to-end manual validation. Endpoint /CreateProfile for 200 and /CreateProfileError for 400
 
 -A separate Sales Associate profile was not created, as the assignment did not require a dedicated least-privilege internal user model. Internal testing was performed using a System Administrator user
