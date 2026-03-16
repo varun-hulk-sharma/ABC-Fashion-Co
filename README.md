@@ -1,13 +1,12 @@
 ABC Fashion Co. – Salesforce Assignment
 
-Solution Overview:
-******************
-This solution was built to support ABC Fashion Co.’s loyalty program onboarding process for two primary entities -  internal sales associates and unauthenticated retail customers.
+## Solution Overview:
 
-The implementation includes:
-*****************************
+This solution was built to support ABC Fashion Co.’s loyalty program onboarding process for two user groups -  internal sales associates and unauthenticated retail customers.
+
+## The implementation includes:
 -Person Accounts enabled with supporting record types, page layouts, and compact layouts
--A custom Screen Flow for sales associates that limits customer creation to only the required 4 fields and creates a Person Account record
+-A custom Screen Flow for sales associates that limits customer creation to only the required four fields and creates a Person Account record
 -Automatic email delivery of a unique customer profile link using a secure access token
 -A public-facing Experience Cloud / Site page backed by an LWC and Apex controller
 -Secure customer identification using a generated profile access token instead of exposing a Salesforce record Id as the sole identifier
@@ -15,12 +14,10 @@ The implementation includes:
 -A configurable REST integration using Named Credentials / External Credentials
 -Apex test classes using HttpCalloutMock for both success and error callout scenarios
 
-Metadata Included:
-******************
+## Metadata Included:
 This submission includes the following key metadata:
 
-Apex
-****
+## Apex
 -AccountTrigger
 -AccountTriggerHandler
 -RetailCustomerService
@@ -29,12 +26,10 @@ Apex
 -GuestProfileAuthenticationControllerTest
 -AccountTriggerTest
 
-Lightning Web Component
-***********************
+## Lightning Web Component
 -guestProfileAuthentication
 
-Declarative / UI / Experience
-*****************************
+## Declarative / UI / Experience
 -New_Retail_Customer (Flow)
 -Network metadata
 -Custom Site metadata
@@ -52,8 +47,7 @@ Declarative / UI / Experience
 -Account.Business_Account and PersonAccount.Retail_Customer Record Types
 
 
-Solution Summary
-****************
+## Solution Summary
 The solution supports two separate user journeys:
 
 1. Internal Sales Associate Journey:
@@ -78,21 +72,21 @@ When the customer saves their profile:
 
 On success, the external customer_id is stored on the Person Account as Loyalty Customer ID
 
-Solution Details
-*****************
-Step 1 - Org Setup
+## Solution Details
+## Step 1 - Org Setup
 An Enterprise Edition org was used for the implementation so that additional users can be created and the solution can be logged into and reviewed later as required by the assignment.
 
-Step 2 – Sales Associate Creates a Person Account with Only Four Fields
+## Step 2 – Sales Associate Creates a Person Account with Only Four Fields
 To meet the requirement that the sales associate should only be presented with the four basic fields during creation, I implemented a custom Screen Flow launched from a custom New Retail Customer button.
 
-The standard New experience was replaced with a custom entry point for retail customer creation. The Flow only requests only the 4 required fields and assigns the Retail_Customer Person Account record type before record creation. A success screen is displayed after creation and supports quick entry of additional customers
+The standard New experience was replaced with a custom entry point for retail customer creation. The Flow requests only the 4 required fields and assigns the Retail_Customer Person Account record type before record creation. A success screen is displayed after creation and supports quick entry of additional customers
 
-As a result, the sales associate is not asked to enter unrelated profile fields during account creation, while still allowing additional customer details to be viewed later on the Person Account record page. This was not possible using standard OoTB functionality, as there is no standard method for having separate view for creation in Lightning experience.
+As a result, the sales associate is not asked to enter unrelated profile fields during account creation, while still allowing additional customer details to be viewed later on the Person Account record page. 
+This approach was used because standard Lightning record creation does not provide a clean out-of-the-box way to present a separate creation experience with only these four fields while still showing additional fields on the record page afterward.
 
 This solution uses Person Accounts rather than a separate Account/Contact workaround. The package includes the PersonAccount.Retail_Customer record type and the PersonAccount-Retail Customer Layout, which supports the requirement that internal users can later view additional customer profile data on the record page.
 
-Step 3 – Customer Receives a Unique Link and Completes Their Profile
+## Step 3 – Customer Receives a Unique Link and Completes Their Profile
 
 Once a new retail customer is created, an automated email is sent to the customer containing a unique link to a public profile page.
 
@@ -127,7 +121,7 @@ Public Customer Profile Page
 
 The customer-facing page was implemented using guestProfileAuthentication Lightning Web Component (and GuestProfileAuthenticationController Apex controller) on an Experience Cloud Site
 
-If the token is invalid, the profile is not loaded and access is denied. If the token is identified, the customer can access a public page that allows them to:
+If the token is invalid, the profile is not loaded and access is denied. If the token is valid, the customer can access a public page that allows them to:
 -View profile information
 -Update phone number
 -Set date of birth
@@ -152,7 +146,7 @@ On successful save:
 -A queueable integration process is launched to sync the profile externally
 
 
-Step 4 – Profile Completion, Integration, and Response Handling
+## Step 4 – Profile Completion, Integration, and Response Handling
 
 Once the customer completes their profile, Salesforce sends a POST request to an external loyalty service. This is orchestrated by RetailCustomerProfileSync (Apex class). 
 
@@ -180,7 +174,7 @@ Queueable Processing
 
 The outbound integration logic is implemented in a Queueable Apex class.
 
-This keeps the callout logic separated from the controller logic and ensures the profile update happens in Salesforce even if the sync job falils (see rationale in Notes at the end).
+This keeps the callout logic separated from the controller logic and ensures the profile update happens in Salesforce even if the sync job fails (see rationale in Notes at the end).
 
 The queueable is responsible for:
 -building the request body
@@ -214,21 +208,14 @@ ABC_Fashion_Co
 
 It also includes supporting Experience Cloud / site metadata required for the public customer profile flow.
 
-Notes
-******
+## Notes
 
--Because the live endpoint was unavailable, Beeceptor mock endpoints were configured to simulate both success and error responses for end-to-end manual validation. Endpoint /CreateProfile for 200 and /CreateProfileError for 400
-
--A separate Sales Associate profile was not created, as the assignment did not require a dedicated least-privilege internal user model. Internal testing was performed using a System Administrator user
-
--A placeholder Org-Wide Email Address was configured for solution testing and email delivery within the development environment
-
+-Because the live endpoint was unavailable, Beeceptor mock endpoints were configured to simulate both success and error responses for end-to-end manual validation. Endpoint /CreateProfile for 200 and /CreateProfileError for 400.
+-A separate Sales Associate profile was not created, as the assignment did not require a dedicated least-privilege internal user model. Internal testing was performed using a System Administrator user.
+-A placeholder Org-Wide Email Address was configured for solution testing and email delivery within the development environment.
 -The public customer profile page does not rely on a plaintext Salesforce record Id as the only identifier. Access is controlled through a generated profile access token stored on the customer record and validated in Apex.
-
--Profile access tokens are generated using a cryptographically strong random value. Because the collision probability is negligibly small even at very large scale, no additional duplicate-precheck logic was added. The token field was also configured as Unique to enforce uniqueness at the database level.
-
--The external loyalty integration endpoint was designed to be configurable through Named Credentials / External Credentials, in line with the assignment requirement. Other supporting email-related configuration was kept straightforward for the scope of the exercise
-
+-Profile access tokens are generated using a cryptographically strong random value. Because the collision probability is negligibly small even at very large scale, no additional duplicate pre-check logic was added. The token field was also configured as Unique to enforce uniqueness at the database level.
+-The external loyalty integration endpoint was designed to be configurable through Named Credentials / External Credentials, in line with the assignment requirement. Other supporting email-related configuration was kept straightforward for the scope of the exercise.
 -The customer profile update in Salesforce was treated as the primary transaction, with the external loyalty sync handled asynchronously afterward. This assumes the Salesforce profile update should still be committed even if the downstream sync fails. Because the assignment did not state that a failed external callout should block or roll back the profile update, the integration was designed asynchronously. If the requirement had instead been for strict transactional dependency between the Salesforce save and the external sync, the implementation approach would have been different.
 
 
